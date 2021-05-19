@@ -5,6 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>VUE To Do List</title>
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap"
+      rel="stylesheet"
+    />
     <!-- FA CDN -->
     <link
       rel="stylesheet"
@@ -19,9 +25,11 @@
   </head>
   <body>
     <div id="app">
+      <!-- Add quest section -->
       <div id="add_quest">
         <img src="./assets/img/wolf.png" alt="logo witcher" />
         <input
+          id="add_quest_input"
           type="text"
           :minlength="minCharact"
           v-model="newQuest"
@@ -29,38 +37,59 @@
         />
         <button @click="addQuest">Add Quest</button>
       </div>
+      <!-- /Add quest section -->
 
-      <div id="list" v-if="journal.length >0">
-        <div id="to_do_list" v-for="(quest,index) in journal">
-          <p contenteditable="true" v-on:keyup.enter="questUpdate(e)">
-            {{quest}}
-          </p>
-          <i
-            class="fas fa-check-circle"
-            @click="completeQUest(quest, index)"
-          ></i>
-          <i class="fas fa-times-circle" @click="removeQuest(index)"></i>
+      <div class="wrapper">
+        <!-- Quest attive section -->
+        <div id="active_quest" v-if="journal.length >0">
+          <h3>Quest Attive</h3>
+          <div id="active_list" class="p10" v-for="(quest,index) in journal">
+            <input
+              type="text"
+              v-model="journal[index]"
+              v-text="quest"
+              v-on:keyup.enter="questUpdate"
+            />
+            <i
+              class="fas fa-check-circle"
+              @click="completeQUest(quest, index)"
+            ></i>
+            <i class="fas fa-times-circle" @click="removeQuest(index)"></i>
+          </div>
         </div>
-      </div>
-      <div id="all_done" v-else>
-        <p>All quest completed</p>
-      </div>
+        <div id="all_done" v-else>
+          <p>All quest completed</p>
+        </div>
+        <!-- /Quest attive section -->
 
-      <div id="quest_completed" v-show="doneQuest.length > 0">
-        <h3>Quest Completate</h3>
-        <div id="completed_list" v-for="(quest, index) in doneQuest">
-          <p>{{quest}}</p>
-          <i class="fas fa-undo" @click="undoQuest(quest, index)"></i>
+        <!-- Quest completate section -->
+        <div id="quest_completed" v-show="doneQuest.length > 0">
+          <h3>Quest Completate</h3>
+          <div
+            id="completed_list"
+            class="p10"
+            v-for="(quest, index) in doneQuest"
+          >
+            <p>{{quest}}</p>
+            <i class="fas fa-undo" @click="undoQuest(quest, index)"></i>
+          </div>
         </div>
-      </div>
+        <!-- /Quest completate section -->
 
-      <div id="quest_abandoned" v-show="abandonedQuest.length > 0">
-        <h3>Quest Abbandonate</h3>
-        <i class="fas fa-trash-alt" @click="deleteAllAbandoned"></i>
-        <div id="abandoned_list" v-for="(quest, index) in abandonedQuest">
-          <p>{{quest}}</p>
-          <i class="fas fa-pray"></i>
+        <!-- Quest Abbandonate section -->
+        <div id="quest_abandoned" v-show="abandonedQuest.length > 0">
+          <h3>Quest Abbandonate</h3>
+          <i class="fas fa-trash-alt" @click="deleteAllAbandoned"></i>
+          <div
+            id="abandoned_list"
+            class="p10"
+            v-for="(quest, index) in abandonedQuest"
+          >
+            <p>{{quest}}</p>
+            <i class="fas fa-pray" @click="retakeQuest(quest, index)"></i>
+          </div>
         </div>
+        <!-- 7Quest Abbandonate section -->
       </div>
     </div>
 

@@ -13,8 +13,8 @@ const app = new Vue({
     minCharact: 5,
     newQuest: "",
     journal: ["Kill Kikimore", "Kill Gryphon", "Kill Leshen"],
-    doneQuest: ["take money"],
-    abandonedQuest: ["Stiges are too bad", "oh noo"],
+    doneQuest: ["Take money"],
+    abandonedQuest: ["Stiges are too bad"],
   },
   methods: {
     addQuest() {
@@ -44,8 +44,12 @@ const app = new Vue({
         this.abandonedQuest.splice(0);
       }
     },
+    retakeQuest(quest, index) {
+      this.abandonedQuest.splice(index, 1);
+      this.journal.push(quest);
+    },
     questUpdate() {
-      alert("LA quest è stata aggiornata");
+      alert("La quest è stata aggiornata");
     },
   },
 });
