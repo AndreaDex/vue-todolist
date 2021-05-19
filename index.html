@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VUE To Do List</title>
+    <!-- FA CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div id="add_quest">
+        <img src="" alt="" />
+        <input type="text" v-model="newQuest" />
+        <button @click="addQuest">Add Quest</button>
+      </div>
+
+      <div id="list" v-if="journal.length >0">
+        <div id="to_do_list" v-for="(quest,index) in journal">
+          <span contenteditable="true">{{quest}}</span>
+          <i class="fas fa-check-circle"></i>
+          <i class="fas fa-times-circle" @click="removeQuest(index)"></i>
+        </div>
+      </div>
+      <div id="all_done" v-else>
+        <p>All quest completed</p>
+      </div>
+    </div>
+    <!-- VUE JS script -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <!-- Main JS -->
+    <script src="./assets/js/main.js"></script>
+  </body>
+</html>
