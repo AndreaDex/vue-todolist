@@ -20,15 +20,20 @@
   <body>
     <div id="app">
       <div id="add_quest">
-        <img src="" alt="" />
-        <input type="text" v-model="newQuest" />
+        <img src="./assets/img/wolf.png" alt="logo witcher" />
+        <input
+          type="text"
+          :minlength="minCharact"
+          v-model="newQuest"
+          v-on:keyup.enter="addQuest"
+        />
         <button @click="addQuest">Add Quest</button>
       </div>
 
       <div id="list" v-if="journal.length >0">
         <div id="to_do_list" v-for="(quest,index) in journal">
           <span contenteditable="true">{{quest}}</span>
-          <i class="fas fa-check-circle"></i>
+          <i class="fas fa-check-circle" @click="completeQUest(index)"></i>
           <i class="fas fa-times-circle" @click="removeQuest(index)"></i>
         </div>
       </div>

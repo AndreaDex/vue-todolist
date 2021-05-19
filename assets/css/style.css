@@ -1,0 +1,33 @@
+/* common */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-image: url("../img/blood_paper.jpg");
+  background-size: cover;
+}
+
+/* Main */
+#app,
+#add_quest {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#add_quest {
+  padding: 30px;
+}
+
+#list {
+  display: flex;
+  flex-flow: column;
+
+  min-width: 300px;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.61);
+}
