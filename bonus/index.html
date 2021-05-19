@@ -32,7 +32,9 @@
 
       <div id="list" v-if="journal.length >0">
         <div id="to_do_list" v-for="(quest,index) in journal">
-          <p contenteditable="true" v-on:keyup.enter.prevent>{{quest}}</p>
+          <p contenteditable="true" v-on:keyup.enter="questUpdate(e)">
+            {{quest}}
+          </p>
           <i
             class="fas fa-check-circle"
             @click="completeQUest(quest, index)"
@@ -44,19 +46,24 @@
         <p>All quest completed</p>
       </div>
 
-      <div id="quest_completed">
-        <!--   <ul id="completed_list">
-          <li v-for="(item, index) in doneQuest">
-            {{item}}
-            <i class="fas fa-undo" @click="undoQuest(index)"></i>
-          </li>
-        </ul> -->
+      <div id="quest_completed" v-show="doneQuest.length > 0">
+        <h3>Quest Completate</h3>
         <div id="completed_list" v-for="(quest, index) in doneQuest">
           <p>{{quest}}</p>
           <i class="fas fa-undo" @click="undoQuest(quest, index)"></i>
         </div>
       </div>
+
+      <div id="quest_abandoned" v-show="abandonedQuest.length > 0">
+        <h3>Quest Abbandonate</h3>
+        <i class="fas fa-trash-alt" @click="deleteAllAbandoned"></i>
+        <div id="abandoned_list" v-for="(quest, index) in abandonedQuest">
+          <p>{{quest}}</p>
+          <i class="fas fa-pray"></i>
+        </div>
+      </div>
     </div>
+
     <!-- VUE JS script -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
     <!-- Main JS -->

@@ -14,7 +14,7 @@ const app = new Vue({
     newQuest: "",
     journal: ["Kill Kikimore", "Kill Gryphon", "Kill Leshen"],
     doneQuest: ["take money"],
-    abandonedQuest: [],
+    abandonedQuest: ["Stiges are too bad", "oh noo"],
   },
   methods: {
     addQuest() {
@@ -35,6 +35,17 @@ const app = new Vue({
     undoQuest(quest, index) {
       this.doneQuest.splice(index, 1);
       this.journal.push(quest);
+    },
+    deleteAllAbandoned() {
+      let confirm = prompt(
+        "Sei sicuro di voler eliminare tutte le quest abbandonate ? Conferma con si/no"
+      );
+      if (confirm === "si") {
+        this.abandonedQuest.splice(0);
+      }
+    },
+    questUpdate() {
+      alert("LA quest è stata aggiornata");
     },
   },
 });
