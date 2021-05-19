@@ -54,7 +54,10 @@
               class="fas fa-check-circle"
               @click="completeQUest(quest, index)"
             ></i>
-            <i class="fas fa-times-circle" @click="removeQuest(index)"></i>
+            <i
+              class="fas fa-times-circle"
+              @click="removeQuest(quest, index)"
+            ></i>
           </div>
         </div>
         <div id="all_done" v-else>
@@ -78,8 +81,11 @@
 
         <!-- Quest Abbandonate section -->
         <div id="quest_abandoned" v-show="abandonedQuest.length > 0">
-          <h3>Quest Abbandonate</h3>
-          <i class="fas fa-trash-alt" @click="deleteAllAbandoned"></i>
+          <div class="mini_wrapper">
+            <h3>Quest Abbandonate</h3>
+            <i class="fas fa-trash-alt" @click="deleteAllAbandoned"></i>
+          </div>
+
           <div
             id="abandoned_list"
             class="p10"

@@ -25,8 +25,9 @@ const app = new Vue({
         alert("La quest deve avere almeno 5 caratteri");
       }
     },
-    removeQuest(index) {
+    removeQuest(quest, index) {
       this.journal.splice(index, 1);
+      this.abandonedQuest.push(quest);
     },
     completeQUest(quest, index) {
       this.journal.splice(index, 1);
