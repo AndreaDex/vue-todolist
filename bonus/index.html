@@ -33,12 +33,28 @@
       <div id="list" v-if="journal.length >0">
         <div id="to_do_list" v-for="(quest,index) in journal">
           <p contenteditable="true" v-on:keyup.enter.prevent>{{quest}}</p>
-          <i class="fas fa-check-circle" @click="completeQUest(index)"></i>
+          <i
+            class="fas fa-check-circle"
+            @click="completeQUest(quest, index)"
+          ></i>
           <i class="fas fa-times-circle" @click="removeQuest(index)"></i>
         </div>
       </div>
       <div id="all_done" v-else>
         <p>All quest completed</p>
+      </div>
+
+      <div id="quest_completed">
+        <!--   <ul id="completed_list">
+          <li v-for="(item, index) in doneQuest">
+            {{item}}
+            <i class="fas fa-undo" @click="undoQuest(index)"></i>
+          </li>
+        </ul> -->
+        <div id="completed_list" v-for="(quest, index) in doneQuest">
+          <p>{{quest}}</p>
+          <i class="fas fa-undo" @click="undoQuest(quest, index)"></i>
+        </div>
       </div>
     </div>
     <!-- VUE JS script -->
