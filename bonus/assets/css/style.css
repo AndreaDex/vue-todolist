@@ -61,7 +61,8 @@ button {
 
 #active_quest,
 #quest_completed,
-#quest_abandoned {
+#quest_abandoned,
+#all_done {
   display: flex;
   flex-flow: column;
   min-width: 300px;
